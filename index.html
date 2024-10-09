@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FV</title>
+
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css' />
+  <!-- google font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Protest+Strike&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="./css/reset.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    img {
+      width: 100%;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    h2 {
+      font-size: 2rem;
+    }
+
+    h3 {
+      font-size: 1.7rem;
+    }
+
+    h4 {
+      font-size: 1.5rem;
+    }
+
+    h5 {
+      font-size: 1.2rem;
+    }
+
+    h6 {
+      font-size: 1rem;
+    }
+
+    #FV {
+      width: 100%;
+      height: 100vh;
+      font-family: "Protest Strike", sans-serif;
+      position: relative;
+    }
+
+    #FV .fv-pic {
+      position: absolute;
+      width: 100%;
+      top: 0%;
+      right: 0;
+      /* transform: translateY(-50%); */
+      clip-path: circle(50% at 50% 50%);
+      overflow: visible;
+      z-index: -1;
+    }
+
+    #FV .circle {
+      width: 1%;
+      position: absolute;
+      left: 70%;
+      top: 20%;
+      transform: translate(-50%, -50%);
+      animation: rotate 10s linear infinite;
+    }
+
+    .content {
+      width: 100%;
+      height: 300vh;
+    }
+
+    @keyframes rotate {
+      0% {
+        transform: translate(-50%, -50%)
+      }
+
+      100% {
+        transform: translate(-50%, -50%) rotate(1turn)
+      }
+    }
+
+    @media (min-width: 576px) {
+      #FV .fv-pic {
+        clip-path: circle(20% at 70% 20%);
+      }
+
+      #FV .circle {
+        width: 56%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <section id="FV">
+    <div class="container h-100 text-center text-sm-start">
+      <div class="row h-100 d-flex align-items-center">
+        <div class="col-12 col-sm-6">
+          <h1>Xuan Lin</h1>
+          <h5 class="mt-2">Front-end Engineer / Web Designer</h5>
+        </div>
+      </div>
+    </div>
+
+    <div class="fv-pic">
+      <img src="https://picsum.photos/1080/1920/?random=10">
+      <div class="circle">
+        <img src="./src/images/mv-circle-mask02.svg" alt="">
+      </div>
+    </div>
+  </section>
+
+  <div class="content"></div>
+
+
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.min.js'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js'
+    integrity='sha512-7eHRwcbYkK4d9g/6tD/mhkf++eoTHwpNM9woBxtPUBWm67zeAfFC+HrdoE2GanKeocly/VxeLvIqwvCdk7qScg=='
+    crossorigin='anonymous'></script>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js'
+    integrity='sha512-onMTRKJBKz8M1TnqqDuGBlowlH0ohFzMXYRNebz+yOcc5TQr/zAKsthzhuv0hiyUKEiQEQXEynnXCvNTOk50dg=='
+    crossorigin='anonymous'></script>
+
+  <script>
+    let fvTl = gsap.timeline()
+    fvTl
+      .from('#FV h1', {
+        opacity: 0,
+        x: -100,
+        duration: 1,
+      })
+      .from('#FV h5', {
+        opacity: 0,
+        y: -10,
+        duration: 1,
+      })
+      .from('#FV .fv-pic', {
+        opacity: 0,
+        duration: 1.5,
+      }, 0.8)
+
+    let fvTlsc = gsap.timeline({
+      scrollTrigger: {
+        trigger: '#FV',
+        markers: true,
+        pin: true,
+        scrub: 2,
+        start: 'top top',
+        end: '+=100',
+      },
+    })
+
+    fvTlsc
+      .to('#FV .fv-pic', {
+        clipPath: 'circle(50% at 50% 20%)',
+        duration: 2,
+      }, 0)
+      .to('#FV .circle', {
+        left: '50%',
+        top: '20%',
+        width: '143%',
+        duration: 2,
+      }, 0)
+  </script>
+</body>
+
+</html>
